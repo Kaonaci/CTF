@@ -22,8 +22,8 @@ public interface ApiService {
     @POST("/api/chats/{chatId}/unmute")
     Object unmuteChat(@Path("chatId") String str, Continuation<? super Response<MuteResponse>> continuation);
 
-    @PUT("/api/users/me/fcm-token")
-    Object updateFcmToken(@Body UpdateFcmTokenRequest updateFcmTokenRequest, Continuation<? super Response<Map<String, Boolean>>> continuation);
+    // ... сокращено ...
+
 }
 ```
 
@@ -31,9 +31,9 @@ public interface ApiService {
 Для динамического анализа используем эмулятор с правами **root** и установленным **frida-server**.
 
 1. Находим идентификатор приложения:
-   ```bash
-   frida-ps -Uai | grep alfa
-   ```
+```bash
+frida-ps -Uai | grep alfa
+```
 2. Настраиваем **Burp Suite** для перехвата трафика, указав прокси в настройках эмулятора.
 
 ## Шаг 3. Обход SSL Pinning
@@ -130,7 +130,10 @@ FCM MESSAGE: {
     "id":"b273d0c8-28ea-4343-bf19-3a813e303249",
     "text":"Ваша заявка на участие в походе рассмотрена. К сожалению, все места уже заняты.",
     "type":"message",
-    "sender_id":"fca4a43a-3004-478d-b7e8-fa5aff549fd2","chat_id":"5ce14d4e-70cf-41a9-9bd4-6c8a392fc4ab","created_at":"2026-04-28T19:55:35.174599+00:00","sender_username":"Организатор"
+    "sender_id":"fca4a43a-3004-478d-b7e8-fa5aff549fd2",
+    "chat_id":"5ce14d4e-70cf-41a9-9bd4-6c8a392fc4ab",
+    "created_at":"2026-04-28T19:55:35.174599+00:00",
+    "sender_username":"Организатор"
 }
 FCM MESSAGE: {
     "type":"kicked",
@@ -140,7 +143,10 @@ FCM MESSAGE: {
     "id":"25890199-efc3-4b3a-b038-1e6b6928e24b",
     "text":"координаты точки сборки: alfa{gR0up_ChAt_1DOr_M3S5EnG3r_PWN3D}",
     "type":"message",
-    "sender_id":"fca4a43a-3004-478d-b7e8-fa5aff549fd2","chat_id":"5ce14d4e-70cf-41a9-9bd4-6c8a392fc4ab","created_at":"2026-04-28T19:56:05.179290+00:00","sender_username":"Организатор"
+    "sender_id":"fca4a43a-3004-478d-b7e8-fa5aff549fd2",
+    "chat_id":"5ce14d4e-70cf-41a9-9bd4-6c8a392fc4ab",
+    "created_at":"2026-04-28T19:56:05.179290+00:00",
+    "sender_username":"Организатор"
 }
 ```
 
